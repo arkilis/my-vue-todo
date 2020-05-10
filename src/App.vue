@@ -1,19 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <AddTodo />
+    <ul>
+      <li v-for="todo in todos" v-bind:key="todo.id">
+        <!-- {{index}} : {{todo}} -->
+        <MyTodoView :my-value="{{todo}}" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddTodo from "./components/AddTodo.vue";
+import MyTodoView from "./components/Todo.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    AddTodo,
+    MyTodoView
+  },
+  data() {
+    return {
+      todos: ["finish vue tutorial", "update linkedin", "send email"]
+    };
   }
-}
+};
 </script>
 
 <style>
@@ -24,5 +37,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+AddTodo {
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 </style>
